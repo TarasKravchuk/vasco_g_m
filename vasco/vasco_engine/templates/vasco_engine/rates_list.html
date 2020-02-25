@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "base.html" %}
+<body>
+<center><h2>Add new rate</h2>
+    {% block content %}
+    <form method="post">
+<table>
+    {{ form.as_table}}
+</table>
+{% csrf_token %}
+    <br>
+<button type="submit" class="btn btn-primary"> Add new rate </button>
+</form>
+    {% endblock %}
+</center>
+</body>
+</html>

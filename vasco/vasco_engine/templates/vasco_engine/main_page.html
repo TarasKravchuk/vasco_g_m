@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "base.html" %}
+ <style>
+ .layer {
+    height: 54px;
+    color : white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    float: left;
+    text-align: center;
+  margin: 0 1.5%;
+  width: 70%;
+   }
+   ."Add_new_currency_rate"{
+   float: right;
+    margin: 0 1.5%;
+      }
+ </style>
+<body>
+ <header>
+     <div class="layer">
+         <h1><strong> <span style="color: black;"> <em>CURRENCY RATES WEBSITE</em></span></strong></h1>
+     </div>
+          </header>
+       <div class="Add_new_currency_rate"><button type="button" class="btn btn-success  btn-lg"><a href="{% url 'vasco_engine:add_currency'%}"> Add new currency rate </a></button> </div>
+
+ <table class="table table-striped">
+  <thead>
+    <tr>
+        <th scope="col">Currency</th>
+      <th scope="col">Valid from</th>
+      <th scope="col">Valid till</th>
+      <th scope="col">Purchase Rate (UAH)</th>
+        <th scope="col">Sale Rate (UAH)</th>
+        <th scope="col"> </th>
+         </tr>
+  </thead>
+  <tbody>
+  {% for a in rates_list %}
+  <tr>
+      <td><a href="{% url 'vasco_engine:personal_currency' a.currency %}">{{a.currency}}</a></td>
+      <td>{{a.valid_from}}</td>
+      <td>{{a.valid_till}}</td>
+      <td>{{a.purchase_rate}}</td>
+      <td>{{a.sale_rate}}</td>
+      <td><button type="button" class="btn  btn-warning btn-lg"><a href="{% url 'vasco_engine:object_deleter' a.id %}">Delelte</a></button> </td> </div>
+        {% endfor %}
+    </tr>
+  </tbody>
+ </table>
+{% include "vasco_engine/pagination.html" with page=page_obj %}
+</body>
+</html>
